@@ -1,0 +1,7 @@
+export const MAIN_URL = '/'
+export const NEWS_URL = '/news'
+export const CONTACTS_URL = '/contacts'
+export const PROFILE_URL = '/profile'
+export const SIGNIN_URL = '/signin'
+export const SIGNUP_URL = '/signup'
+export const INFO_URL = '/info'

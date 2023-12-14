@@ -1,0 +1,52 @@
+header {
+  background-color: black;
+  padding: 1em 0 1em 0;
+}
+header p,
+h1,
+a {
+  color: white;
+  text-decoration: none;
+  font-family: "Noto Serif";
+}
+.header__logo {
+  font-size: 50px;
+  letter-spacing: 15px;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 0.4em;
+}
+.header__nav {
+  text-align: center;
+  flex: 1 1;
+}
+.header__menu {
+  display: flex;
+  gap: 1em;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+.header__wrapper {
+  width: 1400px;
+  margin: 0 auto;
+}
+.header__content {
+  align-items: center;
+
+  display: flex;
+  justify-content: space-between;
+}
+.header__profile {
+  flex: 1 1;
+  text-align: right;
+}
+.header__search-wrapper {
+  flex: 1 1;
+  /* width: 20em;
+  margin-right: -10em; */
+}
+.header__search {
+  width: 24em;
+  padding: 0.7em 1em 0.7em 3.3em;
+  border-radius: 1.4em;
+}

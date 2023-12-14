@@ -1,0 +1,32 @@
+.card {
+  flex-direction: column;
+  display: flex;
+  text-align: center;
+  width: 100%;
+}
+.card__img-wrapper {
+  border: 1px solid black;
+  border-radius: 3em;
+  height: 20em;
+  width: 100%;
+}
+
+.card__text {
+  /* line-height: 0.2; */
+}
+.card__title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 15em;
+  padding-left: 1em;
+  text-align: center;
+}
+.card__category {
+  text-decoration: underline;
+}
+.card__img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
