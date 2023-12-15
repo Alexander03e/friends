@@ -17,12 +17,14 @@
 .card__title {
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
   width: 15em;
+  margin-bottom: -0.8em;
+  overflow: hidden;
   padding-left: 1em;
   text-align: center;
 }
 .card__category {
+  margin-top: -0.8em;
   text-decoration: underline;
 }
 .card__img {

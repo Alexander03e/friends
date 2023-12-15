@@ -2,12 +2,15 @@ import React from 'react'
 import Profile from '../pages/profile/Profile'
 import {useRoutes} from 'react-router-dom'
 import { MAIN_URL, NEWS_URL, PROFILE_URL, SIGNIN_URL, SIGNUP_URL, CONTACTS_URL, INFO_URL } from './config'
+import Signin from '../pages/signin/Signin'
+import Signup from '../pages/signup/Signup'
 
 
 const MainRoutes = ({isAuth}) => {
 
   const baseRoutes = [
-    {path: '/'}
+    {path: '/signin', element: <Signin />},
+    {path: '/signup', element: <Signup />}
   ]
 
   const authRoutes =[

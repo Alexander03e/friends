@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import './Header.css'
 import UserOutlined from '@ant-design/icons'
 import SearchOutlined from '@ant-design/icons'
-const Header = () => {
+const Header = ({isAuth}) => {
   
   return (
     <header>
@@ -15,11 +15,12 @@ const Header = () => {
           <div className="header__nav">
             <h1 className='header__logo'>Дружите.ру</h1>
             <div className="header__menu">
-                <NavLink className="menu__link">НОВОСТИ</NavLink>
-                <NavLink className="contacts__link">КОНТАКТЫ</NavLink>
+                <NavLink to='/news' className="header__link news-link">НОВОСТИ</NavLink>
+                <NavLink to='/contacts' className="header__link contact-link">КОНТАКТЫ</NavLink>
             </div>
           </div>
-          <div className="header__profile"><NavLink to='/profile'><img style={{filter:'invert(1)', width:'2em'}} src="public/profile.png" alt="no photo" /></NavLink></div>
+          <div className="header__profile">
+            {!isAuth ? <NavLink to='/profile'><img style={{filter:'invert(1)', width:'2em'}} src="public/profile.png" alt="no photo" /></NavLink>: <NavLink to='/signin'>ВОЙТИ</NavLink>}</div> 
         </div>
       </div>
     </header>

@@ -1,0 +1,38 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 33em;
+  gap: 1.5em;
+  padding-top: 3.4em;
+  margin: 0 auto;
+  text-align: center;
+}
+.redirect-reg a {
+  color: var(--text-color);
+}
+.signin__title {
+  font-size: 1.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+.form__input {
+  font-size: 1.4em;
+  padding: 1em 0.8em;
+  background-color: #b4b4b4;
+  color: black;
+  border: none;
+  border-radius: 1em;
+  letter-spacing: 0.1em;
+}
+.form__btn {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-variant-caps: titling-caps;
+}
+.form {
+  p {
+    font-size: 1.2em;
+  }
+}
