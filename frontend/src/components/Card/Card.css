@@ -11,9 +11,6 @@
   width: 100%;
 }
 
-.card__text {
-  /* line-height: 0.2; */
-}
 .card__title {
   text-overflow: ellipsis;
   white-space: nowrap;
