@@ -2,15 +2,33 @@ import { NavLink } from 'react-router-dom'
 import './Header.css'
 import UserOutlined from '@ant-design/icons'
 import SearchOutlined from '@ant-design/icons'
-const Header = ({isAuth}) => {
+import React from 'react'
+import { initialNews } from '../../App'
+const Header = ({isAuth, newsReducer}) => {
+  const {news, setNews} = newsReducer
+  const [searched, setSearched] = React.useState('')
   
+  const onChangeInput = (e) => {
+    let value = e.target.value
+    setSearched(value)
+    console.log(searched)
+    let filtered = initialNews.filter((el) => {
+      return(
+        el.text.toLowerCase().includes(value.toLowerCase())
+      )
+    })
+
+    console.log(filtered)
+    setNews(filtered)
+  }
+
   return (
     <header>
       <div className="header__wrapper">
         <div className="header__content">
           <div style={{position:'relative'}} className="header__search-wrapper">
             <img style={{ width:'2em', position: 'absolute', left: '0.6em', top:'5px'}} src="public/lupa.png" alt="no photo" />
-            <input type="text" className="header__search" placeholder='' />
+            <input type="text" onChange={onChangeInput} value={searched} className="header__search" placeholder='' />
           </div>
           <div className="header__nav">
             <h1 className='header__logo'>Дружите.ру</h1>
