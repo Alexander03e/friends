@@ -31,6 +31,7 @@ class UserRole(models.Model):
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = None
+    avatar = models.ImageField(verbose_name='Аватарка', upload_to='users/avatars', null=True, blank=True)
     full_name = models.CharField(verbose_name='ФИО', max_length=255)
     email = models.EmailField(verbose_name='Email', unique=True)
     shifts = models.ManyToManyField(verbose_name='Смены', to=Shift, blank=True)

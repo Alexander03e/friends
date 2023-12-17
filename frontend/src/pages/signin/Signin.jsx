@@ -18,7 +18,15 @@ const Signin = ({setAuth}) => {
         email: state.login,
         password: state.password
       })
-      .then(res => {window.localStorage.setItem('user', JSON.stringify(res.data))})
+      .then(async res => { 
+        let user = res.data
+        await axios
+          .get(res.data.role)
+          .then(res => { 
+              user.role = res.data
+            })
+          .catch(err => console.log(err))
+        window.localStorage.setItem('user', JSON.stringify(user)) })
       .catch(err => console.log(err))
       if(localStorage.getItem('user')!='"Invalid login"'){
         console.log(localStorage.getItem('user'))
