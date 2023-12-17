@@ -44,6 +44,8 @@ a {
 }
 .header__profile {
   flex: 1 1;
+  display: flex;
+  justify-content: flex-end;
   text-align: right;
 }
 .header__search-wrapper {

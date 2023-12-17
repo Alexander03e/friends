@@ -4,11 +4,16 @@ import UserOutlined from '@ant-design/icons'
 import SearchOutlined from '@ant-design/icons'
 import React from 'react'
 
-const Header = ({isAuth, newsReducer}) => {
+const Header = ({isAuth, newsReducer,setAuth}) => {
   const {news, setNews, initialNews, setInitialNews} = newsReducer
   const [searched, setSearched] = React.useState('')
   
+  const logoutClick = () => {
+    localStorage.clear()
+    setAuth(false)
+  }
   //Реализация поиска
+
   const onChangeInput = (e) => {
     let filtered;
     let value = e.target.value
@@ -40,7 +45,7 @@ const Header = ({isAuth, newsReducer}) => {
             </div>
           </div>
           <div className="header__profile">
-            {!isAuth ? <NavLink to='/profile'><img style={{filter:'invert(1)', width:'2em'}} src="public/profile.png" alt="no photo" /></NavLink>: <NavLink to='/signin'>ВОЙТИ</NavLink>}</div> 
+            {isAuth ? <div style={{display:'flex', alignItems:'center', gap:'20px',}}><NavLink to='/profile'><img style={{filter:'invert(1)', width:'2em'}} src="public/profile.png" alt="no photo" /></NavLink><NavLink onClick={logoutClick} to='/signin'>Выйти</NavLink></div>: <NavLink to='/signin'>ВОЙТИ</NavLink>}</div> 
         </div>
       </div>
     </header>

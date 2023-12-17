@@ -11,11 +11,17 @@ import axios from 'axios'
 function App() {
   
   const [news, setNews] = React.useState('')
-  const [isAuth, setIsAuth] = useState(true)
+  const [isAuth, setIsAuth] = useState(false)
   const [initialNews, setInitialNews] = React.useState('')
   const newsReducer = {
     news, setNews, initialNews, setInitialNews
   }
+  useEffect(() => {
+    if(localStorage.getItem('user')!='"Invalid login"'|''){
+      console.log(localStorage.getItem('user'))
+      setIsAuth(true);
+    }
+  }, [])
   
   // const getArticles = async () => {
   //   const {data} = await axios
@@ -30,13 +36,13 @@ function App() {
   // })
 
   // console.log(initialNews)
-  
+
   return (
     <BrowserRouter>
       <div className="app">
-        <Header newsReducer={newsReducer} isAuth={isAuth}/>
+        <Header newsReducer={newsReducer} isAuth={isAuth} setAuth={setIsAuth}/>
         <main>
-          <MainRoutes news={news} initialNews={initialNews} setNews={setNews} setInitialNews={setInitialNews} isAuth={isAuth} />
+          <MainRoutes news={news} initialNews={initialNews} setNews={setNews} setInitialNews={setInitialNews} isAuth={isAuth} setAuth={setIsAuth} />
         </main>
         <Footer />
       </div>

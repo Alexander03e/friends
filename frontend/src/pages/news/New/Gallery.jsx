@@ -1,15 +1,16 @@
 import './New.css'
 
 const Gallery = ({img}) => {
-
+  console.log(img)
   return (
     <div className="gallery">
-      <img src={img} alt="" className="gallery__img" />
-      <img src={img} alt="" className="gallery__img" />
-      <img src={img} alt="" className="gallery__img" />
-      <img src={img} alt="" className="gallery__img" />
-      <img src={img} alt="" className="gallery__img" />
-      {/* <img src={img} alt="" className="gallery__img" /> */}
+      {img.map(image=> {
+        console.log(image)
+        return (
+          <img src={image} alt="" className="gallery__img" />
+        )
+      })}
+     
     </div>
   )
 }

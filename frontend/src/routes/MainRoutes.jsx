@@ -9,11 +9,11 @@ import Policy from '../pages/policy/Policy'
 import Contacts from '../pages/contacts/Contacts'
 
 
-const MainRoutes = ({isAuth, news, setNews, initialNews, setInitialNews}) => {
+const MainRoutes = ({isAuth, news, setNews, initialNews, setInitialNews, setAuth}) => {
 
 
   const baseRoutes = [
-    {path: SIGNIN_URL, element: <Signin />},
+    {path: SIGNIN_URL, element: <Signin setAuth={setAuth}/>},
     {path: SIGNUP_URL, element: <Signup />},
     {path: NEWS_URL, element: <News news={news} initialNews={initialNews} setNews={setNews} setInitialNews={setInitialNews}/>},
     {path: MAIN_URL, element: <News news={news} initialNews={initialNews} setNews={setNews} setInitialNews={setInitialNews}/>},
