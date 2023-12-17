@@ -21,11 +21,6 @@ class Shift(models.Model):
 
 class UserRole(models.Model):
     name = models.CharField(verbose_name='Название', max_length=255)
-
-    @classmethod
-    def get_default_pk(cls):
-        exam, _ = cls.objects.get_or_create(name='Пользователь')
-        return exam.pk
     
     class Meta:
         verbose_name = 'Роль'
@@ -39,7 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     full_name = models.CharField(verbose_name='ФИО', max_length=255)
     email = models.EmailField(verbose_name='Email', unique=True)
     shifts = models.ManyToManyField(verbose_name='Смены', to=Shift, blank=True)
-    role = models.ForeignKey(verbose_name='Роль', to=UserRole, on_delete=models.PROTECT, default=UserRole.get_default_pk)
+    role = models.ForeignKey(verbose_name='Роль', to=UserRole, null=True, on_delete=models.PROTECT)
 
     is_active = models.BooleanField(verbose_name='Активирован', default=True)
     is_staff = models.BooleanField(verbose_name='Персонал', default=False)
