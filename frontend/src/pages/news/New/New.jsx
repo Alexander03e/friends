@@ -42,10 +42,10 @@ const New = ({item}) => {
     <div className="new">
       <div className="new__header">
         <div className="new__img-container">
-          <img src={item?.user_img} alt="no-photo" className="new-img" />
+          <img src={item?.user.avatar} alt="no-photo" className="new-img" />
         </div>
         <div className="new__name">
-          <strong><p>{user.full_name}</p></strong>
+          <strong><p>{item?.user.full_name}</p></strong>
           <p className="new__time">{formatData}</p>
         </div>
       </div>

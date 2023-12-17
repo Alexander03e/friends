@@ -18,7 +18,10 @@ class UserViewSet(viewsets.ModelViewSet):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return Response(model_to_dict(user))
+                    print(1)
+                    print(UserSerializer(user, context={'request': request}).data)
+                    serialized = UserSerializer(user, context={'request': request}).data
+                    return Response(serialized)
                 else:
                     return Response('Disabled account')
             else:
