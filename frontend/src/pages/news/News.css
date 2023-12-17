@@ -2,3 +2,23 @@
   border: 1px solid black;
   margin-top: 2em;
 }
+.post-form {
+  display: flex;
+  flex-direction: column;
+  width: 30em;
+  gap: 0.8em;
+  margin-top: 2em;
+  input {
+    padding: 1.3em;
+    font-size: 15px;
+  }
+  button {
+    border-radius: 1em;
+    padding: 1em;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    border: none;
+  }
+}

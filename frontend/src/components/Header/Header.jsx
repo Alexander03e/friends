@@ -23,11 +23,11 @@ const Header = ({isAuth, newsReducer,setAuth}) => {
         el.text.toLowerCase().includes(value.toLowerCase())
       )
     })
-
+    console.log(filtered)
     setInitialNews(filtered)
   }
 
-  //initialNews == newNews (по смыслу)
+  //initialNews == newNews 
 
   return (
     <header>

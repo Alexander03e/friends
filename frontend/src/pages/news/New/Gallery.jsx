@@ -1,7 +1,6 @@
 import './New.css'
 
 const Gallery = ({img}) => {
-  console.log(img)
   return (
     <div className="gallery">
       {img.map(image=> {
