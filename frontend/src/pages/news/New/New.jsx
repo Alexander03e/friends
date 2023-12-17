@@ -1,7 +1,21 @@
 import '../News.css'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import './New.css'
 import Gallery from './Gallery'
+import moment from 'moment'
 const New = ({item}) => {
+
+  const [user, setUser] = useState('')
+
+  const formatData = moment(item?.published_at).format('D MMM HH:mm')
+
+   useEffect(() => {
+    axios
+      .get(item?.user)
+      .then((res)=>setUser(res.data))
+
+  }, [])
 
   return (
     <div className="new">
@@ -10,8 +24,8 @@ const New = ({item}) => {
           <img src={item?.user_img} alt="no-photo" className="new-img" />
         </div>
         <div className="new__name">
-          <strong><p>{item?.name}</p></strong>
-          <p className="new__time">{item?.time }</p>
+          <strong><p>{user.full_name}</p></strong>
+          <p className="new__time">{formatData}</p>
         </div>
       </div>
       <div className="new__body">

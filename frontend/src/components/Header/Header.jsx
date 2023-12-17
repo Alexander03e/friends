@@ -3,24 +3,26 @@ import './Header.css'
 import UserOutlined from '@ant-design/icons'
 import SearchOutlined from '@ant-design/icons'
 import React from 'react'
-import { initialNews } from '../../App'
+
 const Header = ({isAuth, newsReducer}) => {
-  const {news, setNews} = newsReducer
+  const {news, setNews, initialNews, setInitialNews} = newsReducer
   const [searched, setSearched] = React.useState('')
   
+  //Реализация поиска
   const onChangeInput = (e) => {
+    let filtered;
     let value = e.target.value
     setSearched(value)
-    console.log(searched)
-    let filtered = initialNews.filter((el) => {
+    filtered = news.filter((el) => {
       return(
         el.text.toLowerCase().includes(value.toLowerCase())
       )
     })
 
-    console.log(filtered)
-    setNews(filtered)
+    setInitialNews(filtered)
   }
+
+  //initialNews == newNews (по смыслу)
 
   return (
     <header>
