@@ -9,9 +9,10 @@ const Profile = ({user_profile}) => {
   const [shifts, setShifts] = useState([])
   const [roles, setRoles] = useState('')
   const [r,setR] = useState(0)
+  const [user1,setUser1] = useState('')
   user_profile ? user = user_profile : user = JSON.parse(localStorage.getItem('user')) 
   useEffect(() => {
-    setRole(JSON.parse(localStorage.getItem('user')).role.name)
+    setRole(JSON.parse(localStorage.getItem('user')).role?.name)
     axios
       .get('http://127.0.0.1:8000/api/shifts/')
       // .then((res) => setShifts(res.data))
@@ -49,6 +50,21 @@ const Profile = ({user_profile}) => {
       .then((res) => setR(r+1))
     window.location.reload()
   }
+  const addShiftRequest = async (shift) => {
+    console.log(shift)
+    await axios
+      .patch(`${user?.url}add_shift/`, {
+        shift: shift.url
+      })
+      .then(async res => {
+        await axios
+          .get(res.data.url)
+          .then(res => setUser1(res.data))
+          .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
+      window.location.reload()
+  }
   
   return (
     <section className='profile'>
@@ -79,7 +95,7 @@ const Profile = ({user_profile}) => {
                 <div style={{display:'flex', flexDirection:'column', textAlign:'left'}}>
                   {shifts?.map((shift)=> {                    
                     return (
-                      <p style={{color:'darkblue', cursor:'pointer'}}>{shift?.title}</p>
+                      <p onClick={() => addShiftRequest(shift)} style={{color:'darkblue', cursor:'pointer'}}>{shift?.title}</p>
                     )
                   
                   })}
