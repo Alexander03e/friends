@@ -17,9 +17,11 @@ function App() {
     news, setNews, initialNews, setInitialNews
   }
   useEffect(() => {
-    if(localStorage.getItem('user')!='"Invalid login"'|''){
-      console.log(localStorage.getItem('user'))
-      setIsAuth(true);
+    if(localStorage.getItem('user')){
+      if(localStorage.getItem('user')!='"Invalid login"'|''){
+        console.log(localStorage.getItem('user'))
+        setIsAuth(true);
+      }
     }
   }, [])
   

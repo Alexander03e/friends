@@ -19,7 +19,7 @@ const News = ({news, setInitialNews, initialNews, setNews}) => {
 
   useEffect(()=>{
     getArticles()
-    console.log(JSON.parse(window.localStorage.getItem('user')).role)
+    console.log(JSON.parse(window.localStorage.getItem('user'))?.role)
   }, [])
 
   const postForm = (e) => {
@@ -31,13 +31,13 @@ const News = ({news, setInitialNews, initialNews, setNews}) => {
     axios
       .post('http://127.0.0.1:8000/api/articles/',{
         text: value,
-        user: user.url,
+        user: user?.url,
       })
   }
   return (
     <section className="news">
       <div className="container">
-        {user.role.name === 'moderator' ?
+        {user?.role?.name === 'moderator' ?
           <form className='post-form'>
             <input onChange={postForm} type="text" className='form__input' placeholder='Введите текст' value={value}/>
             <button onClick={addPost}>Создать пост</button> 
@@ -45,7 +45,7 @@ const News = ({news, setInitialNews, initialNews, setNews}) => {
           : ''
         }
         <div className="news__wrapper">
-          {initialNews!='' ? initialNews.map(item => <New key={item.id} item = {item} /> ) : ''}
+          {initialNews!='' ? initialNews.map(item => <New key={item?.id} item = {item} /> ) : ''}
         </div>
       </div>
     </section>
