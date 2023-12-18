@@ -56,7 +56,7 @@ const Profile = ({user_profile}) => {
         <div className="profile__wrapper">
           
           <div className="profile__header">
-            {(role=='moderator' && user_profile) ? <div style={form_styles}><h3>Уровень доступа: </h3>
+            {(role=='Администратор' && user_profile) ? <div style={form_styles}><h3>Уровень доступа: </h3>
             {/* <p className='role_current'>{user?.role?.name}</p> */}
             {roles != '' ? roles?.map((el) => {
               return (
@@ -71,9 +71,9 @@ const Profile = ({user_profile}) => {
               <img className="profile__logo-img" src={user?.avatar} alt="profile photo" />
             </div>
             <h2>{user?.full_name}</h2>
-            {(role=='moderator' && user_profile)? <div style={{color:'gray'}}><p>Роль: {user?.role?.name}</p></div> : ''}
+            {(role=='Администратор' && user_profile)? <div style={{color:'gray'}}><p>Роль: {user?.role?.name}</p></div> : ''}
             <h3 className='profile__work-title'>Смены, на которых вы побывали: </h3>
-            {(role=='moderator' && user_profile)? <div style={shift_styles}>
+            {(role=='Администратор' && user_profile)? <div style={shift_styles}>
               <h3 onClick={addShift} style={{cursor:'pointer', textDecoration:'underline'}}>Добавить смену: </h3>
               {modal && 
                 <div style={{display:'flex', flexDirection:'column', textAlign:'left'}}>
