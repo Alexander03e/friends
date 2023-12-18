@@ -3,11 +3,16 @@ import React, { useEffect, useState } from 'react'
 import New from './New/New'
 import axios from 'axios'
 
+
 const News = ({news, setInitialNews, initialNews, setNews}) => {
   const [articles, setArticles] = useState([])
   const [value, setValue] = useState('')
   const [rerender, setRerender] = useState('')
   const [moderator, setModerator] = useState(false)
+
+
+
+
   const getArticles = async () => {
     await axios
       .get('http://127.0.0.1:8000/api/articles/')
@@ -56,6 +61,6 @@ const News = ({news, setInitialNews, initialNews, setNews}) => {
       </div>
     </section>
   )
-}
 
+}
 export default News

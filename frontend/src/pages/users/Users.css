@@ -1,0 +1,21 @@
+.user__wrapper {
+  border: 1px solid black;
+  padding: 0.5em;
+  border-radius: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 40em;
+}
+.users__wrapper {
+  gap: 0.4em;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3em;
+}
+.user__profile-wrapper {
+  margin-top: 3em;
+}
+.user-avatar {
+  text-align: right;
+}

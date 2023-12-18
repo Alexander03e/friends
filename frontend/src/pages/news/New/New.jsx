@@ -37,11 +37,20 @@ const New = ({item, moderator,setRerender,setInitialNews, initialNews}) => {
     getUser()
     getImage()
   }, [])
-  const deletePost = (itemid) => {
+  const deletePost = () => {
     console.log(item)
     axios.delete(item.url)
     .catch(e => console.log(e))
-    setRerender(e=>e-1)
+    setTimeout(() => {
+      for(let i=0; i<2; i++){
+        setRerender(rerender=> rerender-1)
+      }
+      return () => {
+        clearTimeout()
+      }
+    },100)
+    setRerender(rerender=> rerender-1)
+   
   }
   return (
     <div className="new">

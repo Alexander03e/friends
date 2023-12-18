@@ -42,6 +42,7 @@ const Header = ({isAuth, newsReducer,setAuth}) => {
             <div className="header__menu">
                 <NavLink to='/news' className="header__link news-link">НОВОСТИ</NavLink>
                 <NavLink to='/contacts' className="header__link contact-link">КОНТАКТЫ</NavLink>
+                <NavLink to='/users' className="header__link contact-link">ПОЛЬЗОВАТЕЛИ</NavLink>
             </div>
           </div>
           <div className="header__profile">
