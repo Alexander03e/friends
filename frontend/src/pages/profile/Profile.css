@@ -8,6 +8,9 @@
   margin-top: 2.4em;
   text-align: center;
 }
+.profile__header {
+  position: relative;
+}
 .profile__logo-wrapper {
   border: 1px solid black;
   width: 12em;
