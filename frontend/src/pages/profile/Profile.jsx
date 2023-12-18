@@ -3,24 +3,35 @@ import Card from '../../components/Card/Card'
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 const Profile = ({user_profile}) => {
-  let user;
   const [role, setRole] = useState()
   const [modal, setModal] = useState(false)
   const [shifts, setShifts] = useState([])
   const [roles, setRoles] = useState('')
-  const [r,setR] = useState(0)
-  user_profile ? user = user_profile : user = JSON.parse(localStorage.getItem('user')) 
+  const [user, setUser] = useState({})
+
   useEffect(() => {
+    console.log(user_profile)
     setRole(JSON.parse(localStorage.getItem('user')).role.name)
     axios
-      .get('http://127.0.0.1:8000/api/shifts/')
-      // .then((res) => setShifts(res.data))
-      .then(res => setShifts(res.data))
-      axios
         .get("http://127.0.0.1:8000/api/user-roles/")
         .then((res) => setRoles(res.data))
-    }, [])
-  console.log(user_profile)
+    const getUserData = async () => {
+      await axios
+        .get('http://127.0.0.1:8000/api/shifts/')
+        .then(res => setShifts(res.data))
+        .catch(err => console.log(err))
+      if (!user_profile) {
+        await axios
+          .get(JSON.parse(localStorage.getItem('user')).url)
+          .then(res => setUser(res.data))
+          .catch(err => console.log(err))
+      } else {
+        setUser(user_profile)
+      }
+    }
+    console.log(user)
+    getUserData()
+  }, [])
 
   const form_styles = {
     textAlign:'right',
@@ -39,15 +50,31 @@ const Profile = ({user_profile}) => {
     right:'0',
     
   }
+
+  const changeRole = (el) => {
+    axios
+      .patch(user?.url, {role: el?.url})
+      .then((res) => console.log(res.data))
+    window.location.reload()
+  }
   
   const addShift = () =>{
     setModal(!modal) 
   }
-  const changeRole = (el) => {
-    axios
-      .patch(user?.url, {role: el?.url})
-      .then((res) => setR(r+1))
-    window.location.reload()
+
+  const addShiftRequest = async (shift) => {
+    console.log(shift)
+    await axios
+      .patch(`${user?.url}add_shift/`, {
+        shift: shift.url
+      })
+      .then(async res => {
+        await axios
+          .get(res.data.url)
+          .then(res => setUser(res.data))
+          .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
   }
   
   return (
@@ -59,6 +86,7 @@ const Profile = ({user_profile}) => {
             {(role=='Администратор' && user_profile) ? <div style={form_styles}><h3>Уровень доступа: </h3>
             {/* <p className='role_current'>{user?.role?.name}</p> */}
             {roles != '' ? roles?.map((el) => {
+              console.log(el, user)
               return (
                 <p className={el?.name == user?.role?.name ? 'role__current' : 'role__change' } onClick={()=>changeRole(el)}>{el?.name}</p>
               )
@@ -79,7 +107,7 @@ const Profile = ({user_profile}) => {
                 <div style={{display:'flex', flexDirection:'column', textAlign:'left'}}>
                   {shifts?.map((shift)=> {                    
                     return (
-                      <p style={{color:'darkblue', cursor:'pointer'}}>{shift?.title}</p>
+                      <p onClick={() => addShiftRequest(shift)} style={{color:'darkblue', cursor:'pointer'}}>{shift?.title}</p>
                     )
                   
                   })}
@@ -89,7 +117,6 @@ const Profile = ({user_profile}) => {
           </div>
           <div className="profile__body">
               {user?.shifts?.map((item,index)=> {
-                user_profile ? item = item.url : item = item
                 console.log(item)
                 return (
                     <Card key={item.url} item={item}/>

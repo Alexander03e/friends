@@ -17,6 +17,7 @@ const UserProfile = () => {
     }catch (e) {
       console.log(e)
     }
+    console.log(user)
   }
   useEffect(() => {
     getUserById()
