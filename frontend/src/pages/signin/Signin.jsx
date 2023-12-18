@@ -28,11 +28,11 @@ const Signin = ({setAuth}) => {
           .catch(err => console.log(err))
         window.localStorage.setItem('user', JSON.stringify(user)) })
       .catch(err => console.log(err))
-      if(localStorage.getItem('user')!='"Invalid login"'){
-        console.log(localStorage.getItem('user'))
-        setAuth(true);
-        navigate('/profile')
-      }
+    if (localStorage.getItem('user') != '"Invalid login"') {
+      console.log(localStorage.getItem('user'))
+      setAuth(true);
+      navigate('/profile')
+    }
   }
 
 
