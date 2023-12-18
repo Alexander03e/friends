@@ -6,7 +6,7 @@ const Profile = ({user_profile}) => {
   let user;
   const [role, setRole] = useState()
   const [modal, setModal] = useState(false)
-  const [shifts, setShifts] = useState('')
+  const [shifts, setShifts] = useState([])
   const [roles, setRoles] = useState('')
   const [r,setR] = useState(0)
   user_profile ? user = user_profile : user = JSON.parse(localStorage.getItem('user')) 
@@ -19,10 +19,9 @@ const Profile = ({user_profile}) => {
       axios
         .get("http://127.0.0.1:8000/api/user-roles/")
         .then((res) => setRoles(res.data))
-    }, [r])
+    }, [])
   console.log(user_profile)
-  console.log(role)
-  
+
   const form_styles = {
     textAlign:'right',
     padding: '1.3em',
@@ -47,9 +46,10 @@ const Profile = ({user_profile}) => {
   const changeRole = (el) => {
     axios
       .patch(user?.url, {role: el?.url})
-      // .then((res) => setR(r+1))
+      .then((res) => setR(r+1))
     window.location.reload()
   }
+  
   return (
     <section className='profile'>
       <div className="container">
@@ -77,9 +77,7 @@ const Profile = ({user_profile}) => {
               <h3 onClick={addShift} style={{cursor:'pointer', textDecoration:'underline'}}>Добавить смену: </h3>
               {modal && 
                 <div style={{display:'flex', flexDirection:'column', textAlign:'left'}}>
-                  {shifts?.map((shift)=> {
-                    
-                    console.log(shift)
+                  {shifts?.map((shift)=> {                    
                     return (
                       <p style={{color:'darkblue', cursor:'pointer'}}>{shift?.title}</p>
                     )
@@ -92,6 +90,7 @@ const Profile = ({user_profile}) => {
           <div className="profile__body">
               {user?.shifts?.map((item,index)=> {
                 user_profile ? item = item.url : item = item
+                console.log(item)
                 return (
                     <Card key={item.url} item={item}/>
                 )

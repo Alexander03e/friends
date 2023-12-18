@@ -6,17 +6,23 @@ import "moment/locale/ru"
 
 const Card = ({item}) => {
   moment.locale("ru")
+  const [shift, setShift] = useState()
+  useEffect(() => {
+    axios
+      .get(item)
+      .then((res)=> setShift(res.data))
+  },[])
   return (
     <div className='card'>
       <div className="card__img-wrapper">
-        <img src={item?.cover} alt="картинка" className="card__img" />
+        <img src={shift?.cover} alt="картинка" className="card__img" />
       </div>
       <div className="card__text">
         <div className="title">
-          <p className='card__title'>{item?.title}</p>
+          <p className='card__title'>{shift?.title}</p>
         </div>
-        <p><strong>{moment(item?.start_date).format('D MMM')} - {moment(item?.end_date).format('D MMM')}</strong></p>
-        <p className='card__category'>{item?.location}</p>
+        <p><strong>{moment(shift?.start_date).format('D MMM')} - {moment(shift?.end_date).format('D MMM')}</strong></p>
+        <p className='card__category'>{shift?.location}</p>
       </div>
     </div>
   )
