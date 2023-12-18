@@ -1,6 +1,8 @@
 .news__wrapper {
   border: 1px solid black;
   margin-top: 2em;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .post-form {
   display: flex;

@@ -20,7 +20,7 @@ const News = ({news, setInitialNews, initialNews, setNews}) => {
   useEffect(()=>{
     getArticles()
     console.log(JSON.parse(window.localStorage.getItem('user'))?.role)
-  }, [])
+  }, [value])
 
   const postForm = (e) => {
     setValue(e.target.value)
@@ -33,6 +33,7 @@ const News = ({news, setInitialNews, initialNews, setNews}) => {
         text: value,
         user: user?.url,
       })
+    setValue('')
   }
   return (
     <section className="news">
