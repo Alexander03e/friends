@@ -66,7 +66,7 @@ const New = ({item, moderator,setRerender,setInitialNews, initialNews}) => {
       <div className="new__body">
         {moderator && <p onClick={()=> deletePost(item?.id)} className="new__text delete__text">Удалить пост</p>}
         <p className="new__text">{item?.text}</p>
-        {item?.img!= '' ?<Gallery img={image}/>: ''}
+        {item?.images && <Gallery img={item.images}/>}
       </div>
     </div>
   )
