@@ -13,7 +13,11 @@
     margin: 0;
   }
 }
-
+.delete__text {
+  color: darkblue;
+  cursor: pointer;
+  text-decoration: underline;
+}
 .new__img-container {
   border: 1px solid black;
   width: 4em;

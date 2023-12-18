@@ -6,6 +6,8 @@ import axios from 'axios'
 const News = ({news, setInitialNews, initialNews, setNews}) => {
   const [articles, setArticles] = useState([])
   const [value, setValue] = useState('')
+  const [rerender, setRerender] = useState('')
+  const [moderator, setModerator] = useState(false)
   const getArticles = async () => {
     await axios
       .get('http://127.0.0.1:8000/api/articles/')
@@ -20,7 +22,8 @@ const News = ({news, setInitialNews, initialNews, setNews}) => {
   useEffect(()=>{
     getArticles()
     console.log(JSON.parse(window.localStorage.getItem('user'))?.role)
-  }, [value])
+    user?.role?.name === 'moderator' ? setModerator(true) : setModerator(false)
+  }, [rerender])
 
   const postForm = (e) => {
     setValue(e.target.value)
@@ -33,8 +36,10 @@ const News = ({news, setInitialNews, initialNews, setNews}) => {
         text: value,
         user: user?.url,
       })
+      .then((res)=>{setInitialNews([...initialNews, res.data])})
     setValue('')
   }
+  
   return (
     <section className="news">
       <div className="container">
@@ -46,7 +51,7 @@ const News = ({news, setInitialNews, initialNews, setNews}) => {
           : ''
         }
         <div className="news__wrapper">
-          {initialNews!='' ? initialNews.map(item => <New key={item?.id} item = {item} /> ) : ''}
+          {initialNews!='' ? initialNews.map(item => <New initialNews={initialNews} setInitialNews={setInitialNews} setRerender={setRerender} moderator={moderator} key={item?.id} item = {item} /> ) : ''}
         </div>
       </div>
     </section>

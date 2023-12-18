@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import './New.css'
 import Gallery from './Gallery'
 import moment from 'moment'
-const New = ({item}) => {
+const New = ({item, moderator,setRerender,setInitialNews, initialNews}) => {
 
   const [user, setUser] = useState('')
   const [image, setImage] = useState([])
@@ -37,19 +37,25 @@ const New = ({item}) => {
     getUser()
     getImage()
   }, [])
-
+  const deletePost = (itemid) => {
+    console.log(item)
+    axios.delete(item.url)
+    .catch(e => console.log(e))
+    setRerender(e=>e-1)
+  }
   return (
     <div className="new">
       <div className="new__header">
         <div className="new__img-container">
-          <img src={item?.user.avatar} alt="no-photo" className="new-img" />
+          <img src={item?.user?.avatar} alt="no-photo" className="new-img" />
         </div>
         <div className="new__name">
-          <strong><p>{item?.user.full_name}</p></strong>
+          <strong><p>{item?.user?.full_name}</p></strong>
           <p className="new__time">{formatData}</p>
         </div>
       </div>
       <div className="new__body">
+        {moderator && <p onClick={()=> deletePost(item?.id)} className="new__text delete__text">Удалить пост</p>}
         <p className="new__text">{item?.text}</p>
         {item?.img!= '' ?<Gallery img={image}/>: ''}
       </div>
