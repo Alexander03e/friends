@@ -25,7 +25,7 @@ const News = ({news, setInitialNews, initialNews, setNews}) => {
   useEffect(()=>{
     getArticles()
     console.log(JSON.parse(window.localStorage.getItem('user'))?.role)
-    user?.role?.name === 'Администратор' ? setModerator(true) : setModerator(false)
+    user?.role?.name === 'moderator' ? setModerator(true) : setModerator(false)
   }, [rerender])
 
   const postForm = (e) => {
@@ -66,7 +66,7 @@ const News = ({news, setInitialNews, initialNews, setNews}) => {
   return (
     <section className="news">
       <div className="container">
-        {user?.role?.name === 'Администратор' ?
+        {user?.role?.name === 'moderator' ?
           <form className='post-form'>
             <input onChange={postForm} type="text" className='form__input' placeholder='Введите текст' value={value}/>
             <input 

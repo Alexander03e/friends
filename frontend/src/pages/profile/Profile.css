@@ -29,3 +29,19 @@
   letter-spacing: 0.2em;
   margin-top: 2em;
 }
+.role__change {
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 2em;
+  padding: 0.4em;
+}
+.role__current {
+  border: 1px solid black;
+  cursor: pointer;
+  text-align: left;
+  background-color: white;
+  /* width: 100%; */
+  padding: 0.4em;
+  border-radius: 2em;
+}
