@@ -48,7 +48,7 @@ const Profile = ({user_profile}) => {
     axios
       .patch(user?.url, {role: el?.url})
       // .then((res) => setR(r+1))
-      setR(r=>r+1)
+    window.location.reload()
   }
   return (
     <section className='profile'>

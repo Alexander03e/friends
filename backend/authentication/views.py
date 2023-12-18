@@ -18,8 +18,6 @@ class UserViewSet(viewsets.ModelViewSet):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    print(1)
-                    print(UserSerializer(user, context={'request': request}).data)
                     serialized = UserSerializer(user, context={'request': request}).data
                     return Response(serialized)
                 else:
@@ -41,6 +39,15 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response({'message': 'Successed'}, status=status.HTTP_201_CREATED)
         else:
             return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
+        
+    @action(methods=['patch'], detail=True)
+    def add_shift(self, request, pk):
+        user = User.objects.get(id=pk)
+        print(request.data['shift'].split('/'))
+        shift = Shift.objects.get(id=request.data['shift'].split('/')[-2])
+        user.shifts.add(shift)
+        user.save()
+        return Response(UserSerializer(user, context={'request': request}).data)
 
 
 class UserRoleViewSet(viewsets.ModelViewSet):
