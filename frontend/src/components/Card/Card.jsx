@@ -3,6 +3,7 @@ import './Card.css'
 import {useEffect, useState} from 'react'
 import moment from 'moment'
 import "moment/locale/ru"
+
 const Card = ({item}) => {
   moment.locale("ru")
   const [shift, setShift] = useState()

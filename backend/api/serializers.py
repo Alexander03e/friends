@@ -12,7 +12,7 @@ class ArticlesSerializer(serializers.HyperlinkedModelSerializer):
             self.Meta.depth = 1
     class Meta:
         model = Articles
-        fields = ['url', 'id', 'published_at', 'text', 'user']
+        fields = ['url', 'id', 'published_at', 'text', 'user', 'images']
 
 
 class ArticlesImageSerializer(serializers.HyperlinkedModelSerializer):
