@@ -7,11 +7,10 @@ const Profile = ({user_profile}) => {
   const [modal, setModal] = useState(false)
   const [shifts, setShifts] = useState([])
   const [roles, setRoles] = useState('')
-  const [user, setUser] = useState({})
-
+  const [user1,setUser1] = useState('')
+  user_profile ? user = user_profile : user = JSON.parse(localStorage.getItem('user')) 
   useEffect(() => {
-    console.log(user_profile)
-    setRole(JSON.parse(localStorage.getItem('user')).role.name)
+    setRole(JSON.parse(localStorage.getItem('user')).role?.name)
     axios
         .get("http://127.0.0.1:8000/api/user-roles/")
         .then((res) => setRoles(res.data))
@@ -57,11 +56,6 @@ const Profile = ({user_profile}) => {
       .then((res) => console.log(res.data))
     window.location.reload()
   }
-  
-  const addShift = () =>{
-    setModal(!modal) 
-  }
-
   const addShiftRequest = async (shift) => {
     console.log(shift)
     await axios
@@ -71,10 +65,15 @@ const Profile = ({user_profile}) => {
       .then(async res => {
         await axios
           .get(res.data.url)
-          .then(res => setUser(res.data))
+          .then(res => setUser1(res.data))
           .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
+      window.location.reload()
+  }
+  
+  const addShift = () =>{
+    setModal(!modal) 
   }
   
   return (

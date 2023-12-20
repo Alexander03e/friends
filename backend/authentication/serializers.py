@@ -17,6 +17,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         else:
             self.Meta.depth = 1
 
+    # Добавление полей, не предусмотренных в модели (для регистрации)
     password1 = serializers.CharField(
         write_only=True,
         required=True,

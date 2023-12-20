@@ -9,6 +9,7 @@ from authentication.views import login
 
 from .routers import router
 
+# Свагер нужен для просмотра эндпоинтов
 schema_view = get_schema_view(
     openapi.Info(
         title="Cats API",

@@ -6,6 +6,7 @@ class ArticlesSerializer(serializers.HyperlinkedModelSerializer):
     def __init__(self, *args, **kwargs):
         super(ArticlesSerializer, self).__init__(*args, **kwargs)
         request = self.context.get('request')
+        # Делает так, что при указанных запросах глубина меньше (не сериализуются поля модели внутри)
         if request and (request.method == 'POST' or request.method == 'PUT' or request.method == 'PATCH'):
             self.Meta.depth = 0
         else:

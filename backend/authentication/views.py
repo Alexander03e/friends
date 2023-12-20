@@ -11,6 +11,9 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    # action - доп. эндпоинт, называется так же как и ф-я
+    # тут например будет api/users/login
+    # указываются методы и является ли общим эндпоинтом (detail=False) или конкретного экземляра (detal=True)
     @action(methods=['post'], detail=False)
     def login(self, request):
         if request.method == 'POST':

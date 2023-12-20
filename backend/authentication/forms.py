@@ -4,7 +4,7 @@ from django.forms import ValidationError
 
 from .models import User
 
-
+# Кастомная форма создания юзера
 class UserCreationForm(forms.ModelForm):
     email = forms.EmailField(label='Email')
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput)
@@ -15,6 +15,7 @@ class UserCreationForm(forms.ModelForm):
         model = User
         fields = ('email',)
 
+    # Клининг полей
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")

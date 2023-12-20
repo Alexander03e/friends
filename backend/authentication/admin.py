@@ -5,11 +5,11 @@ from .forms import UserCreationForm, UserChangeForm
 
 
 class UserAdmin(BaseUserAdmin):
+    # Меняет формы добавления и изменения на кастомные
     form = UserChangeForm
     add_form = UserCreationForm
-
+    # Различные настройки отображения User-а в админке
     list_display = ('email', 'full_name', 'is_staff')
-    # list_filter = ('is_admin',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('full_name', 'avatar', 'shifts', 'role')}),

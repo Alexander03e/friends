@@ -29,6 +29,7 @@ class UserRole(models.Model):
     def __str__(self):
         return self.name
 
+# Кастомная модель юзера наследующая классы AbstractBaseUser и PermissionMixin
 class User(AbstractBaseUser, PermissionsMixin):
     username = None
     avatar = models.ImageField(verbose_name='Аватарка', upload_to='users/avatars', null=True, blank=True)
@@ -41,6 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(verbose_name='Персонал', default=False)
     is_superuser = models.BooleanField(verbose_name='Администратор', default=False)
 
+    # Поле, использующееся для логина
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['full_name']
 
